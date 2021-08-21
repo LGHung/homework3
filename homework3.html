@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="homework3.css">
+</head>
+<body>
+    <div class="login_box">
+        <p>Account</p>
+        <input id="account">
+        <p>password</p>
+        <input type="password" id="password">
+        <button onclick="submit()">submit</button>
+        <button onclick="make()">register</button>
+    </div>
+    <div class="register_box" id="box">
+        <p>name</p>
+        <input id="name">
+        <p>Age</p>
+        <input id="age" type="number">
+        <p>email</p>
+        <input id="mail">
+        <p>Account</p>
+        <input id="acc">
+        <p>password</p>
+        <input  id="pass" type="password">
+        <p>repassword</p>
+        <input  id="repass" type="password">
+        <button onclick="makeacc()">Register</button>
+    </div>
+    <script>
+        var box = document.getElementById("box")
+        function make(){
+            box.style.opacity = 1
+        }
+        var tk = ["taikhoan1","taikhoan2","taikhoan3","taikhoan4","taikhoan5"]
+        var mk = ["matkhau1","matkhau2","matkhau3","matkhau4","matkhau5"]
+        function submit(){
+            var acc = document.getElementById("account").value
+            var pass = document.getElementById("password").value
+            if(acc == "" || pass == ""){
+                alert("Bạn cần nhập tài khoản hoặc mật khẩu")
+                return
+            }
+            var ind = -1
+            for(var i = 0; i < tk.length; i++){
+                if(tk[i] == acc){
+                    ind = i
+                    break
+                }
+            }
+            if(ind == -1){
+                alert("Tài khoản không tồn tại")
+            }
+            else{
+                if(mk[ind] == pass){
+                    alert("Đăng nhập thành công")
+                }
+                else{
+                    alert("Mật khẩu sai")
+                }
+            }
+        }
+        function makeacc(){
+            const person = {
+            name: document.getElementById("name").value,
+            age: Number(document.getElementById("age").value),
+            mail: document.getElementById("mail").value,
+            account: document.getElementById("acc").value,
+            pass: document.getElementById("pass").value,
+            repass: document.getElementById("repass").value,
+            };
+            var ind1 = -1
+            for(var i = 0; i < tk.length; i++){
+                if(tk[i] == person.account){
+                    alert("Tài khoản đã tồn tại")
+                    ind1 = i
+                    break
+                }
+            }
+            if(ind1 == -1){
+                    if(person.pass.length < 8 || person.repass.length < 8){
+                        alert("Mật khẩu phải dài hơn 8 chữ số")
+                        return
+                    }
+                    if( person.pass = person.repass){
+                        alert("Tạo tài khoản thành công")
+                        tk.push(person.account)
+                        mk.push(person.pass)
+                        localStorage.setItem(
+                            person.name,
+                            person.age,
+                            person.mail,
+                            );
+                        box.style.opacity = 0
+                    }
+                    else{
+                        alert("Mật khẩu không khớp")
+                        return
+                    }
+            }
+        }
+    </script>
+</body>
+</html>

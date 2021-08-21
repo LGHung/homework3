@@ -1,0 +1,10 @@
+.register_box{
+    margin-top: 20px;
+    opacity: 0;
+}
+.login_box{
+    max-width: 10%;
+}
+.login_box button{
+    margin-top: 20px;
+}
